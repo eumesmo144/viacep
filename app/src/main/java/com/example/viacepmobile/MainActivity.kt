@@ -55,7 +55,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // Método para buscar usuários no Firebase
     private fun loadUsuarios(onResult: (List<Usuario>) -> Unit) {
         val usuarioDAO = UsuarioDAO()
         usuarioDAO.buscar { usuarios ->
@@ -63,13 +62,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // Método para buscar o endereço usando Retrofit com coroutines
     private suspend fun buscarEndereco(): Endereco? {
         return withContext(Dispatchers.IO) {
             try {
                 RetrofitClient.usuarioService.getEndereço()
             } catch (e: Exception) {
-                null // Retorna null se falhar
+                null
             }
         }
     }
